@@ -1,0 +1,2 @@
+#define EXAMPLEDLLMOD_API __declspec(dllexport)
+#define EXAMPLEDLLMOD_API __declspec(dllimport)
