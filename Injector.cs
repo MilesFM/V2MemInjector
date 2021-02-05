@@ -20,9 +20,8 @@ namespace V2MemInjector
 		/// </summary>
 
 		public const int MAX_PATH = 260;
-		private const int INVALID_HANDLE_VALUE = -1;
 
-		[Flags]
+        [Flags]
 		public enum ProcessAccessFlags : uint
 		{
 			All = 0x001F0FFF,
@@ -52,10 +51,10 @@ namespace V2MemInjector
 			NoHeaps = 0x40000000
 		}
 
-		[System.Runtime.InteropServices.DllImport("kernel32.dll", SetLastError = true)]
+		[DllImport("kernel32.dll", SetLastError = true)]
 		public static extern IntPtr OpenProcess(ProcessAccessFlags processAccess, bool bInheritHandle, int processId);
 
-		[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct PROCESSENTRY32
 		{
 			public uint dwSize;
@@ -67,7 +66,7 @@ namespace V2MemInjector
 			public uint th32ParentProcessID;
 			public int pcPriClassBase;
 			public uint dwFlags;
-			[System.Runtime.InteropServices.MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)] public string szExeFile;
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)] public string szExeFile;
 		};
 
 		[StructLayout(LayoutKind.Sequential, CharSet = System.Runtime.InteropServices.CharSet.Ansi)]
